@@ -108,9 +108,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      */
     @Override
     public void startORstop(Integer status, Long id) {
-        Employee employee = Employee.builder().status(status).id(id)
-                .updateTime(LocalDateTime.now())
-                .updateUser(BaseContext.getCurrentId()).build();
+        Employee employee = Employee.builder().status(status).id(id).build();
         employeeMapper.update(employee);
     }
 
@@ -125,8 +123,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void updata(EmployeeDTO employeeDTO) {
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDTO, employee);
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setUpdateUser(BaseContext.getCurrentId());
         employeeMapper.update(employee);
     }
 
